@@ -1,11 +1,23 @@
+<mat-toolbar>
+  <span routerLink="/" class="app-title">Question time!</span>
+</mat-toolbar>
 <div *ngIf="quiz && !questions" class="spinner-grow text-primary"></div>
-
 <div class="quiz" *ngIf="questions">
   <div class="questions" *ngIf="!showResults">
-    <app-question-form [question]="questions[currentQuestionIndex]" (onChoiceMade)="updateChoice($event)">
-    </app-question-form>
-    <button class="btn btn-success" (click)="nextOrViewResults()"
-      [disabled]="!answers.values[currentQuestionIndex]">{{currentQuestionIndex === questions.length = 1 ? 'View Results' : 'Next'}}</button>
+    <mat-card>
+      <app-question-form [question]="questions[currentQuestionIndex]" (onChoiceMade)="updateChoice($event)">
+      </app-question-form>
+      <mat-card-actions>
+        <button mat-button class="btn btn-primary" (click)="nextOrViewResults()"
+          [disabled]="!answers.values[currentQuestionIndex]">
+          {{
+        currentQuestionIndex === this.questions.length - 1 
+        ? "View Results" 
+        : "Next"
+      }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
   </div>
-  <app-results *ngIf="showResults" [answers]="answers"></app-results>>
+  <app-results *ngIf="showResults" [answers]="answers"></app-results>
 </div>

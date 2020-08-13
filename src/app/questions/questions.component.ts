@@ -5,19 +5,19 @@ import { QuestionsService } from '../questions.service';
 import { Quiz, Answers, Choice, Question } from '../quiz.model';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: '../app.component.html',
-  styleUrls: ['../app.component.scss']
+  selector: 'app-questions',
+  templateUrl: './questions.component.html',
+  styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
   quiz: Quiz;
   answers: Answers;
   questions: Question[];
   currentQuestionIndex: number;
+  showResults = false;
 
-  private showResults = false;
+  constructor(public route: ActivatedRoute, public questionsService: QuestionsService) { }
 
-  constructor(private route: ActivatedRoute, public questionsService: QuestionsService) { }
   ngOnInit() {
     this.questionsService.getQuestions(this.route.snapshot.params.quizId)
       .subscribe(questions => {

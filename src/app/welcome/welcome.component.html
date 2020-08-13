@@ -1,9 +1,13 @@
+<mat-toolbar>
+  <span routerLink="/" class="app-title">Question time!</span>
+</mat-toolbar>
 <section class="welcome" *ngIf="quiz">
-  <h1>Question time!</h1>
   <h2>Please choose a quiz below:</h2>
   <mat-card *ngFor="let q of quiz">
-    <mat-card-title>{{q.label}}</mat-card-title>
-    <mat-card-subtitle>{{q.description}}</mat-card-subtitle>
+    <mat-card-header>
+      <mat-card-title>{{q.label}}</mat-card-title>
+      <mat-card-subtitle>{{q.description}}</mat-card-subtitle>
+    </mat-card-header>
     <mat-card-actions>
       <button mat-button routerLink="/{{q.name}}">Take this quiz</button>
     </mat-card-actions>
